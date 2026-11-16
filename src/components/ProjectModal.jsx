@@ -4,11 +4,9 @@ import {
   Cpu, 
   Layers, 
   Radio, 
-  ExternalLink, 
   Github, 
   Trophy, 
   FileCheck, 
-  ShieldCheck,
   Zap,
   ArrowRight
 } from 'lucide-react';
@@ -30,109 +28,109 @@ const ProjectModal = ({ project, onClose }) => {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 animate-in fade-in duration-150"
       role="dialog"
       aria-modal="true"
       aria-labelledby="project-modal-title"
     >
       <div 
-        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-dark-900 border border-slate-700/80 rounded-2xl shadow-2xl p-6 sm:p-8 text-slate-100"
+        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-carbon-900 border border-carbon-700 rounded-lg shadow-2xl p-6 sm:p-8 text-carbon-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
           aria-label="Close modal"
-          className="absolute top-5 right-5 p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+          className="absolute top-5 right-5 p-1.5 rounded bg-carbon-800 hover:bg-carbon-700 text-carbon-400 hover:text-white transition-colors border border-carbon-700"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
         {/* Modal Header */}
-        <div className="mb-6 pr-10">
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            <span className="px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-cyan-950/80 border border-cyan-500/30 text-cyan-400">
+        <div className="mb-6 pr-8">
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-carbon-800 border border-carbon-700 text-carbon-300">
               {project.category}
             </span>
             {project.badge && (
-              <span className="px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-amber-500/15 border border-amber-500/30 text-amber-300 flex items-center gap-1.5">
-                <Trophy className="w-3.5 h-3.5 text-amber-400" />
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-950/40 border border-amber-800 text-amber-400 flex items-center gap-1">
+                <Trophy className="w-3 h-3" />
                 {project.badge}
               </span>
             )}
             {project.patentStatus && (
-              <span className="px-3 py-1 rounded-full text-[11px] font-mono bg-purple-950/60 border border-purple-500/30 text-purple-300 flex items-center gap-1">
-                <FileCheck className="w-3.5 h-3.5 text-purple-400" />
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-carbon-800 border border-carbon-700 text-carbon-300 flex items-center gap-1">
+                <FileCheck className="w-3 h-3 text-tech-blue" />
                 {project.patentStatus}
               </span>
             )}
           </div>
 
-          <h3 id="project-modal-title" className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h3 id="project-modal-title" className="text-xl sm:text-2xl font-bold text-carbon-50 tracking-tight">
             {project.title}
           </h3>
-          <p className="text-sm font-mono text-cyan-300/90 mt-1">
+          <p className="text-xs font-mono text-carbon-400 mt-1">
             {project.subtitle}
           </p>
         </div>
 
-        {/* Full Description */}
-        <div className="mb-6 text-sm sm:text-base text-slate-300 leading-relaxed bg-dark-950/60 p-4 sm:p-5 rounded-xl border border-white/5">
+        {/* Full System Overview */}
+        <div className="mb-6 text-xs sm:text-sm text-carbon-300 leading-relaxed bg-carbon-950 p-4 rounded border border-carbon-800 text-justify sm:text-left">
           {project.description}
         </div>
 
         {/* System Architecture Block Diagram */}
-        <div className="mb-8">
-          <h4 className="text-xs font-mono uppercase tracking-wider text-cyan-400 mb-3 flex items-center gap-2">
-            <Layers className="w-4 h-4" />
-            System Architecture & Signal Pipeline
+        <div className="mb-6">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-carbon-400 mb-2.5 flex items-center gap-1.5 font-semibold">
+            <Layers className="w-3.5 h-3.5 text-tech-blue" />
+            Hardware & Signal Architecture
           </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-              <span className="text-slate-400 block mb-1">01. SENSOR / TRANSDUCER STAGE</span>
-              <span className="text-slate-200 font-medium">{project.architecture.inputStage}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-mono">
+            <div className="p-3 rounded bg-carbon-950 border border-carbon-800">
+              <span className="text-carbon-500 text-[10px] block mb-0.5">01 // SENSOR / TRANSDUCER STAGE</span>
+              <span className="text-carbon-200">{project.architecture.inputStage}</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-              <span className="text-slate-400 block mb-1">02. EMBEDDED CONTROLLER</span>
-              <span className="text-cyan-300 font-medium">{project.architecture.processingUnit}</span>
+            <div className="p-3 rounded bg-carbon-950 border border-carbon-800">
+              <span className="text-carbon-500 text-[10px] block mb-0.5">02 // EMBEDDED CONTROLLER</span>
+              <span className="text-carbon-200">{project.architecture.processingUnit}</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-              <span className="text-slate-400 block mb-1">03. PROTOCOLS & INTERFACES</span>
-              <span className="text-indigo-300 font-medium">{project.architecture.protocols}</span>
+            <div className="p-3 rounded bg-carbon-950 border border-carbon-800">
+              <span className="text-carbon-500 text-[10px] block mb-0.5">03 // PROTOCOLS & INTERFACES</span>
+              <span className="text-carbon-200">{project.architecture.protocols}</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-              <span className="text-slate-400 block mb-1">04. OUTPUT & TELEMETRY</span>
-              <span className="text-emerald-300 font-medium">{project.architecture.outputStage}</span>
+            <div className="p-3 rounded bg-carbon-950 border border-carbon-800">
+              <span className="text-carbon-500 text-[10px] block mb-0.5">04 // OUTPUT & TELEMETRY</span>
+              <span className="text-carbon-200">{project.architecture.outputStage}</span>
             </div>
           </div>
         </div>
 
-        {/* Key Engineering Contributions */}
-        <div className="mb-8">
-          <h4 className="text-xs font-mono uppercase tracking-wider text-cyan-400 mb-3 flex items-center gap-2">
-            <Zap className="w-4 h-4" />
-            Key Engineering Contributions
+        {/* Key Engineering Deliverables */}
+        <div className="mb-6">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-carbon-400 mb-2.5 flex items-center gap-1.5 font-semibold">
+            <Zap className="w-3.5 h-3.5 text-amber-500" />
+            Key Deliverables & Firmware Logic
           </h4>
-          <ul className="space-y-2.5">
+          <ul className="space-y-2">
             {project.highlights.map((item, idx) => (
-              <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"></span>
+              <li key={idx} className="flex items-start gap-2 text-xs text-carbon-300 leading-normal">
+                <span className="text-carbon-500 font-mono mt-0.5">&bull;</span>
                 <span>{item}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Tech Stack Pills */}
-        <div className="mb-8">
-          <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
-            Hardware & Software Stack
+        {/* Hardware & Software BOM */}
+        <div className="mb-6">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-carbon-400 mb-2 font-semibold">
+            BOM Components & Tools
           </h4>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {project.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-cyan-300 border border-slate-700/60"
+                className="px-2 py-0.5 rounded text-[11px] font-mono bg-carbon-800 text-carbon-300 border border-carbon-700"
               >
                 {tech}
               </span>
@@ -140,29 +138,29 @@ const ProjectModal = ({ project, onClose }) => {
           </div>
         </div>
 
-        {/* Modal Footer / Actions */}
-        <div className="flex items-center justify-between pt-6 border-t border-slate-800">
-          <div className="text-xs font-mono text-slate-400">
-            Impact: <span className="text-white font-semibold">{project.impactMetric}</span>
+        {/* Modal Actions */}
+        <div className="flex items-center justify-between pt-4 border-t border-carbon-800 text-xs font-mono">
+          <div className="text-carbon-400">
+            Impact: <span className="text-carbon-100 font-medium">{project.impactMetric}</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             {project.github && (
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-carbon-800 hover:bg-carbon-700 text-carbon-200 font-medium transition-colors border border-carbon-700"
               >
-                <Github className="w-4 h-4" />
+                <Github className="w-3.5 h-3.5" />
                 <span>GitHub Repo</span>
               </a>
             )}
             <button
               onClick={onClose}
-              className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-dark-950 font-bold text-xs transition-colors"
+              className="px-3 py-1.5 rounded bg-carbon-100 hover:bg-white text-carbon-950 font-medium transition-colors"
             >
-              Close Spec
+              Close
             </button>
           </div>
         </div>

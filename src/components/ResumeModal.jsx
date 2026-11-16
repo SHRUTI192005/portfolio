@@ -2,26 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { personalInfo } from '../data/portfolioData';
 import { 
   X, 
-  FileDown, 
   ExternalLink, 
-  Printer, 
   FileCheck,
   CheckCircle,
-  Download,
-  Eye,
-  FileText,
-  Mail,
-  Phone,
-  Linkedin,
-  Github,
-  Award,
-  BookOpen,
-  Briefcase,
-  GraduationCap
+  Download
 } from 'lucide-react';
 
 const ResumeModal = ({ isOpen, onClose }) => {
-  const [viewMode, setViewMode] = useState('pdf'); // 'pdf' or 'document'
+  const [viewMode, setViewMode] = useState('pdf');
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -41,52 +29,49 @@ const ResumeModal = ({ isOpen, onClose }) => {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/85 animate-in fade-in duration-150"
       role="dialog"
       aria-modal="true"
       aria-labelledby="resume-modal-title"
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-4xl h-[92vh] bg-dark-900 border border-slate-700/80 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-slate-100"
+        className="relative w-full max-w-4xl h-[92vh] bg-carbon-900 border border-carbon-700 rounded-lg shadow-2xl flex flex-col overflow-hidden text-carbon-200"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Top Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-b border-slate-800 bg-dark-950/90">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
-              <FileCheck className="w-4 h-4" />
-            </div>
+        {/* Top Control Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-3 border-b border-carbon-800 bg-carbon-950">
+          <div className="flex items-center gap-2.5">
+            <FileCheck className="w-4 h-4 text-tech-blue" />
             <div>
-              <h3 id="resume-modal-title" className="text-sm font-bold text-white flex items-center gap-2">
+              <h3 id="resume-modal-title" className="text-xs font-bold text-carbon-100 font-mono flex items-center gap-2">
                 <span>Shruti_Tyagi_Resume.pdf</span>
-                <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-300">
-                  Updated & Verified
+                <span className="hidden sm:inline-block px-1.5 py-0.2 rounded text-[10px] font-mono bg-carbon-800 text-carbon-400 border border-carbon-700">
+                  ATS Verified
                 </span>
               </h3>
-              <p className="text-[11px] font-mono text-slate-400">Official ATS-Optimized Technical Resume</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            {/* View Mode Toggle */}
-            <div className="flex items-center bg-dark-900 p-0.5 rounded-lg border border-slate-800 text-xs font-mono">
+          <div className="flex items-center gap-2 font-mono text-xs">
+            {/* View Mode Switch */}
+            <div className="flex items-center bg-carbon-900 p-0.5 rounded border border-carbon-800">
               <button
                 onClick={() => setViewMode('pdf')}
-                className={`px-2.5 py-1 rounded-md transition-all ${
+                className={`px-2.5 py-1 rounded transition-colors text-[11px] ${
                   viewMode === 'pdf' 
-                    ? 'bg-cyan-500 text-dark-950 font-bold' 
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-carbon-100 text-carbon-950 font-bold' 
+                    : 'text-carbon-400 hover:text-white'
                 }`}
               >
                 PDF View
               </button>
               <button
                 onClick={() => setViewMode('document')}
-                className={`px-2.5 py-1 rounded-md transition-all ${
+                className={`px-2.5 py-1 rounded transition-colors text-[11px] ${
                   viewMode === 'document' 
-                    ? 'bg-cyan-500 text-dark-950 font-bold' 
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-carbon-100 text-carbon-950 font-bold' 
+                    : 'text-carbon-400 hover:text-white'
                 }`}
               >
                 Text View
@@ -96,34 +81,34 @@ const ResumeModal = ({ isOpen, onClose }) => {
             <a
               href={personalInfo.resumeUrl}
               download="Shruti_Tyagi_Resume.pdf"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-dark-950 font-bold text-xs transition-colors shadow-sm shadow-cyan-500/20"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-carbon-100 hover:bg-white text-carbon-950 font-medium transition-colors text-[11px]"
             >
               <Download className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Download PDF</span>
+              <span className="hidden sm:inline">Download</span>
             </a>
 
             <a
               href={personalInfo.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
-              title="Open PDF in new tab"
+              className="p-1.5 rounded bg-carbon-850 hover:bg-carbon-800 text-carbon-400 hover:text-white transition-colors border border-carbon-700"
+              title="Open in new window"
             >
-              <ExternalLink className="w-4 h-4" />
+              <ExternalLink className="w-3.5 h-3.5" />
             </a>
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+              className="p-1.5 rounded bg-carbon-850 hover:bg-carbon-800 text-carbon-400 hover:text-white transition-colors border border-carbon-700"
               aria-label="Close"
             >
-              <X className="w-4 h-4" />
+              <X className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
         {/* View Mode Container */}
-        <div className="flex-1 w-full bg-slate-950 relative overflow-y-auto">
+        <div className="flex-1 w-full bg-carbon-950 relative overflow-y-auto">
           {viewMode === 'pdf' ? (
             <iframe
               src={`${personalInfo.resumeUrl}#toolbar=0&navpanes=0`}
@@ -132,7 +117,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
             />
           ) : (
             /* Structured ATS-Exact Document View */
-            <div className="max-w-3xl mx-auto my-6 p-6 sm:p-10 bg-white text-slate-900 rounded-lg shadow-xl font-sans text-xs leading-normal">
+            <div className="max-w-3xl mx-auto my-6 p-6 sm:p-10 bg-white text-slate-900 rounded shadow-xl font-sans text-xs leading-normal">
               {/* Header */}
               <div className="text-center pb-3 border-b border-blue-900">
                 <h1 className="text-2xl font-bold text-blue-900 tracking-tight">Shruti Tyagi</h1>
@@ -323,16 +308,14 @@ const ResumeModal = ({ isOpen, onClose }) => {
           )}
         </div>
 
-        {/* Modal Bottom Status Bar */}
-        <div className="px-4 sm:px-6 py-2.5 border-t border-slate-800 bg-dark-950 flex flex-wrap items-center justify-between text-xs font-mono text-slate-400">
-          <div className="flex items-center gap-2">
-            <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+        {/* Modal Bottom Bar */}
+        <div className="px-4 sm:px-6 py-2 border-t border-carbon-800 bg-carbon-950 flex flex-wrap items-center justify-between text-[11px] font-mono text-carbon-500">
+          <div className="flex items-center gap-1.5">
+            <CheckCircle className="w-3.5 h-3.5 text-tech-emerald" />
             <span>Exact 1:1 match with official resume</span>
           </div>
-          <div className="flex items-center gap-3 text-[11px]">
-            <span>Expected: 2027</span>
-            <span>•</span>
-            <span className="text-cyan-400">AKGEC Ghaziabad</span>
+          <div>
+            <span>AKGEC Ghaziabad &bull; B.Tech ECE '27</span>
           </div>
         </div>
 

@@ -16,7 +16,7 @@ function App() {
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
 
   return (
-    <div className="relative bg-dark-950 text-slate-100 min-h-screen selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="relative bg-carbon-950 text-carbon-100 min-h-screen selection:bg-tech-blue/20 selection:text-white">
       {/* Top Navbar */}
       <Navbar onOpenResume={() => setResumeModalOpen(true)} />
 

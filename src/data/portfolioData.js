@@ -14,6 +14,7 @@ export const personalInfo = {
   linkedIn: "https://www.linkedin.com/in/shruti-tyagi-b705ab285",
   github: "https://github.com/SHRUTI192005",
   resumeUrl: "./Shruti_Tyagi_Resume.pdf",
+  profileImage: "./shruti_profile.jpg",
   bio: "B.Tech Electronics & Communication Engineering (ECE) undergraduate and Smart India Hackathon (SIH) 2025 Hardware Edition Winner with hands-on experience in embedded systems, IoT, hardware-software integration, and PCB design. Skilled in Embedded C, Python, Arduino Uno, ESP32, Raspberry Pi, and KiCad. Co-author of an accepted research paper in Pattern Recognition Letters. Eager to apply embedded systems knowledge to develop innovative hardware solutions.",
   stats: [
     { label: "SIH 2025 Rank", value: "#1 Nationally", detail: "Hardware Edition (1,000+ teams)" },

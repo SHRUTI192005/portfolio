@@ -1,6 +1,5 @@
 import React from 'react';
 import { personalInfo } from '../data/portfolioData';
-import HeroCanvas from './HeroCanvas';
 import { 
   Trophy, 
   ArrowRight, 
@@ -8,140 +7,166 @@ import {
   Github, 
   Linkedin, 
   Mail, 
-  Sparkles,
-  Layers,
+  MapPin,
   Cpu,
-  ChevronDown,
-  Terminal,
-  Activity
+  Layers,
+  Award
 } from 'lucide-react';
 
 const Hero = ({ onOpenResume }) => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background Interactive Circuit Canvas */}
-      <HeroCanvas />
-
-      {/* Subtle radial ambient gradients */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-600/15 via-blue-600/10 to-indigo-600/5 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div className="max-w-5xl mx-auto w-full relative z-10 text-center flex flex-col items-center">
+    <section id="hero" className="pt-28 pb-16 px-4 sm:px-6 max-w-6xl mx-auto border-b border-carbon-800/80">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         
-        {/* National Award Pill */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-medium mb-8 backdrop-blur-md shadow-lg shadow-amber-500/5 hover:border-amber-400 transition-all cursor-default">
-          <Trophy className="w-4 h-4 text-amber-400 animate-bounce" />
-          <span className="font-semibold text-amber-200">Winner</span>
-          <span className="text-amber-400/60">•</span>
-          <span>Smart India Hackathon 2025 – Hardware Edition</span>
-          <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-amber-500/20 text-[11px] text-amber-300 font-mono">
-            1st Place Nationally (1,000+ Teams)
-          </span>
-        </div>
+        {/* Left Column: Portrait & Direct Positioning */}
+        <div className="lg:col-span-7 flex flex-col items-start">
+          
+          {/* Profile Picture & Winner Pill */}
+          <div className="flex items-center gap-4 mb-6">
+            <div className="relative">
+              <img 
+                src={personalInfo.profileImage}
+                alt="Shruti Tyagi" 
+                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-2 border-carbon-700 bg-carbon-900 shadow-sm"
+              />
+              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-tech-emerald rounded-full border-2 border-carbon-950" title="Active & Open to Opportunities"></span>
+            </div>
 
-        {/* Name Heading */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
-          Hi, I'm <span className="text-gradient-cyan">Shruti Tyagi</span>.
-        </h1>
+            <div className="flex flex-col">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-mono bg-carbon-900 text-carbon-300 border border-carbon-700 mb-1 w-fit">
+                <Trophy className="w-3 h-3 text-amber-500" />
+                SIH '25 Hardware Edition Winner
+              </span>
+              <span className="text-xs text-carbon-400 font-mono">
+                1st Place Nationally &bull; 1,000+ Teams
+              </span>
+            </div>
+          </div>
 
-        {/* Tagline */}
-        <p className="text-lg sm:text-xl md:text-2xl font-mono text-cyan-300/90 font-medium max-w-3xl mb-6 tracking-wide">
-          {personalInfo.title}
-        </p>
+          {/* Name & Academic Identity */}
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-carbon-50 mb-3">
+            {personalInfo.name}
+          </h1>
 
-        {/* Compelling Introduction */}
-        <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed mb-10 font-normal">
-          Electronics & Communication Engineering undergraduate at AKGEC, specialized in bridging 
-          <span className="text-white font-medium"> physical hardware with real-time firmware</span>. 
-          From architecting multi-sensor industrial pipelines and non-invasive optical medical devices 
-          to routing custom KiCad PCBs and developing Embedded C systems.
-        </p>
+          <p className="text-base sm:text-lg font-mono text-tech-blue mb-4">
+            Electronics Engineer &bull; Embedded Systems &bull; PCB Design &bull; IoT
+          </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
-          <a
-            href="#projects"
-            className="flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 text-dark-950 font-bold text-sm shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:scale-105 active:scale-100 transition-all group"
-          >
-            <span>Explore My Work</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+          <p className="text-sm sm:text-base text-carbon-400 leading-relaxed mb-6 max-w-xl text-justify sm:text-left">
+            B.Tech Electronics & Communication Engineering undergraduate at AKGEC (Expected 2027). 
+            Hands-on experience in register-level Embedded C, ESP32 firmware, KiCad PCB layout, 
+            and multi-sensor hardware pipelines. Co-author of an accepted research paper in 
+            <span className="text-carbon-200 italic"> Pattern Recognition Letters</span> and lead hardware architect 
+            for an SIH-winning, patented metrology verification system.
+          </p>
 
-          <button
-            onClick={onOpenResume}
-            className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/80 hover:border-cyan-500/50 font-semibold text-sm backdrop-blur-md transition-all shadow-lg hover:shadow-cyan-500/10 group"
-          >
-            <FileDown className="w-4 h-4 text-cyan-400 group-hover:-translate-y-0.5 transition-transform" />
-            <span>Download Resume</span>
-          </button>
-
-          <a
-            href="#contact"
-            className="flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 text-sm font-medium transition-all"
-          >
-            <Mail className="w-4 h-4 text-slate-400" />
-            <span>Get in Touch</span>
-          </a>
-        </div>
-
-        {/* Social Icons Strip */}
-        <div className="flex items-center gap-4 mb-16">
-          <a
-            href={personalInfo.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub Profile"
-            className="p-3 rounded-full bg-slate-900/60 border border-slate-800 text-slate-400 hover:text-white hover:border-cyan-500/50 hover:bg-slate-800/80 transition-all shadow-md group"
-          >
-            <Github className="w-5 h-5 group-hover:scale-110 transition-transform" />
-          </a>
-          <a
-            href={personalInfo.linkedIn}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn Profile"
-            className="p-3 rounded-full bg-slate-900/60 border border-slate-800 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 hover:bg-slate-800/80 transition-all shadow-md group"
-          >
-            <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
-          </a>
-          <a
-            href={`mailto:${personalInfo.email}`}
-            aria-label="Email Contact"
-            className="p-3 rounded-full bg-slate-900/60 border border-slate-800 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 hover:bg-slate-800/80 transition-all shadow-md group"
-          >
-            <Mail className="w-5 h-5 group-hover:scale-110 transition-transform" />
-          </a>
-        </div>
-
-        {/* Highlight Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl pt-6 border-t border-slate-800/60">
-          {personalInfo.stats.map((stat, idx) => (
-            <div 
-              key={idx}
-              className="p-4 rounded-xl bg-dark-900/40 border border-white/5 backdrop-blur-md text-left hover:border-cyan-500/30 transition-all group"
+          {/* Action Buttons */}
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <a
+              href="#projects"
+              className="flex items-center gap-2 px-4 py-2.5 rounded bg-tech-blue hover:bg-blue-600 text-white font-medium text-xs font-mono transition-colors"
             >
-              <div className="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-1 flex items-center justify-between">
-                <span>{stat.label}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/50 group-hover:bg-cyan-400 transition-colors"></span>
+              <span>Explore Projects</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+
+            <button
+              onClick={onOpenResume}
+              className="flex items-center gap-2 px-4 py-2.5 rounded bg-carbon-900 hover:bg-carbon-800 text-carbon-200 border border-carbon-700 font-medium text-xs font-mono transition-colors"
+            >
+              <FileDown className="w-3.5 h-3.5 text-carbon-400" />
+              <span>Download Resume (PDF)</span>
+            </button>
+
+            <a
+              href="#contact"
+              className="flex items-center gap-1.5 px-3 py-2.5 rounded bg-transparent hover:bg-carbon-900 text-carbon-400 hover:text-carbon-200 border border-carbon-800 text-xs font-mono transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>Contact</span>
+            </a>
+          </div>
+
+          {/* External Social Profiles Strip */}
+          <div className="flex items-center gap-4 text-xs font-mono text-carbon-400">
+            <a 
+              href={personalInfo.github} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center gap-1.5 hover:text-white transition-colors"
+            >
+              <Github className="w-3.5 h-3.5" />
+              <span>github.com/SHRUTI192005</span>
+            </a>
+            <span>&bull;</span>
+            <a 
+              href={personalInfo.linkedIn} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center gap-1.5 hover:text-tech-blue transition-colors"
+            >
+              <Linkedin className="w-3.5 h-3.5" />
+              <span>LinkedIn</span>
+            </a>
+          </div>
+
+        </div>
+
+        {/* Right Column: Clean Technical Specifications Card */}
+        <div className="lg:col-span-5">
+          <div className="card-technical p-5 font-mono text-xs text-carbon-300">
+            <div className="flex items-center justify-between pb-3 mb-3 border-b border-carbon-800 text-carbon-400 text-[11px]">
+              <span className="flex items-center gap-1.5">
+                <Cpu className="w-3.5 h-3.5 text-tech-blue" />
+                SYSTEM_SPECIFICATIONS.txt
+              </span>
+              <span className="text-tech-emerald">STATUS: ACTIVE</span>
+            </div>
+
+            <div className="space-y-2.5 text-[11px]">
+              <div className="flex justify-between py-1 border-b border-carbon-800/60">
+                <span className="text-carbon-500">Degree:</span>
+                <span className="text-carbon-200">B.Tech ECE (2023–2027)</span>
               </div>
-              <div className="text-xl sm:text-2xl font-bold text-white mb-1 tracking-tight">
-                {stat.value}
+              <div className="flex justify-between py-1 border-b border-carbon-800/60">
+                <span className="text-carbon-500">Institution:</span>
+                <span className="text-carbon-200">AKGEC, Ghaziabad (AKTU)</span>
               </div>
-              <div className="text-xs text-slate-400 font-normal">
-                {stat.detail}
+              <div className="flex justify-between py-1 border-b border-carbon-800/60">
+                <span className="text-carbon-500">National Award:</span>
+                <span className="text-amber-400 font-semibold">1st Place &bull; SIH 2025 Hardware</span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-carbon-800/60">
+                <span className="text-carbon-500">Publication:</span>
+                <span className="text-carbon-200">Pattern Recognition Letters</span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-carbon-800/60">
+                <span className="text-carbon-500">IP:</span>
+                <span className="text-carbon-200">1 Hardware System Patent</span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-carbon-800/60">
+                <span className="text-carbon-500">Microcontrollers:</span>
+                <span className="text-carbon-200">ESP32, Raspberry Pi, Arduino</span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-carbon-800/60">
+                <span className="text-carbon-500">PCB / EDA:</span>
+                <span className="text-carbon-200">KiCad (Schematic & Layout)</span>
+              </div>
+              <div className="flex justify-between py-1">
+                <span className="text-carbon-500">Industrial Training:</span>
+                <span className="text-carbon-200">NTPC Dadri (PSU) &bull; C&I Dept</span>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Scroll down indicator */}
-        <a 
-          href="#about"
-          aria-label="Scroll down"
-          className="mt-14 text-slate-500 hover:text-cyan-400 transition-colors animate-bounce p-2"
-        >
-          <ChevronDown className="w-5 h-5" />
-        </a>
+            <div className="mt-4 pt-3 border-t border-carbon-800 flex items-center justify-between text-[10px] text-carbon-500">
+              <span className="flex items-center gap-1">
+                <MapPin className="w-3 h-3" />
+                Ghaziabad / Greater Delhi, India
+              </span>
+              <span>shrutityagi613@gmail.com</span>
+            </div>
+          </div>
+        </div>
 
       </div>
     </section>

@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { personalInfo } from '../data/portfolioData';
 import { 
-  Cpu, 
   Menu, 
   X, 
   FileDown, 
   Github, 
   Linkedin, 
   Mail,
-  ExternalLink,
-  Award
+  Cpu
 } from 'lucide-react';
 
 const navLinks = [
   { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
   { name: 'Research', href: '#research' },
   { name: 'Experience', href: '#experience' },
-  { name: 'Achievements', href: '#achievements' },
+  { name: 'Skills', href: '#skills' },
   { name: 'Education', href: '#education' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -32,9 +29,8 @@ const Navbar = ({ onOpenResume }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      // Section spy
-      const sections = ['about', 'skills', 'projects', 'research', 'experience', 'achievements', 'education', 'contact'];
-      const scrollPosition = window.scrollY + 200;
+      const sections = ['about', 'projects', 'research', 'experience', 'skills', 'education', 'contact'];
+      const scrollPosition = window.scrollY + 180;
 
       for (const section of sections) {
         const el = document.getElementById(section);
@@ -55,16 +51,16 @@ const Navbar = ({ onOpenResume }) => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         isScrolled 
-          ? 'bg-dark-950/80 backdrop-blur-md border-b border-slate-800/80 shadow-2xl shadow-black/50 py-3' 
-          : 'bg-transparent py-5'
+          ? 'bg-carbon-950/95 border-b border-carbon-800 py-3' 
+          : 'bg-carbon-950 border-b border-carbon-900 py-4'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
           
-          {/* Logo & Status */}
+          {/* Logo & Technical Subtitle */}
           <a 
             href="#hero" 
             onClick={(e) => {
@@ -73,33 +69,31 @@ const Navbar = ({ onOpenResume }) => {
             }}
             className="flex items-center gap-3 group"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 via-blue-600/20 to-purple-600/20 border border-cyan-500/30 flex items-center justify-center relative shadow-lg shadow-cyan-500/10 group-hover:border-cyan-400 transition-colors">
-              <Cpu className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-4 ring-dark-950 animate-pulse"></span>
+            <div className="w-8 h-8 rounded border border-carbon-700 bg-carbon-900 flex items-center justify-center text-carbon-200 font-mono text-xs font-bold">
+              ST
             </div>
             <div className="flex flex-col">
-              <span className="text-base font-bold tracking-tight text-white group-hover:text-cyan-300 transition-colors">
+              <span className="text-sm font-semibold tracking-tight text-carbon-50 group-hover:text-tech-blue transition-colors">
                 {personalInfo.name}
               </span>
-              <span className="text-xs font-mono text-cyan-400/90 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                SIH '25 National Winner
+              <span className="text-[11px] font-mono text-carbon-400">
+                ECE &bull; Embedded Systems &bull; PCB
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 bg-dark-900/60 border border-white/5 rounded-full px-3 py-1.5 backdrop-blur-md">
+          <nav className="hidden md:flex items-center gap-1 text-xs font-medium">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.substring(1);
               return (
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`px-3.5 py-1.5 text-xs font-medium rounded-full transition-all ${
+                  className={`px-3 py-1.5 rounded transition-colors ${
                     isActive 
-                      ? 'text-cyan-300 bg-cyan-950/60 border border-cyan-500/30 shadow-sm shadow-cyan-500/20' 
-                      : 'text-slate-400 hover:text-slate-100 hover:bg-white/5'
+                      ? 'text-carbon-50 bg-carbon-800 font-semibold' 
+                      : 'text-carbon-400 hover:text-carbon-100 hover:bg-carbon-900'
                   }`}
                 >
                   {link.name}
@@ -108,14 +102,14 @@ const Navbar = ({ onOpenResume }) => {
             })}
           </nav>
 
-          {/* Social Links & CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Right Action Buttons */}
+          <div className="hidden sm:flex items-center gap-2">
             <a
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800/60 border border-transparent hover:border-slate-700/60 transition-all"
+              className="p-1.5 text-carbon-400 hover:text-carbon-100 hover:bg-carbon-900 rounded border border-carbon-800 transition-colors"
             >
               <Github className="w-4 h-4" />
             </a>
@@ -124,34 +118,34 @@ const Navbar = ({ onOpenResume }) => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
-              className="p-2 text-slate-400 hover:text-cyan-400 rounded-lg hover:bg-slate-800/60 border border-transparent hover:border-slate-700/60 transition-all"
+              className="p-1.5 text-carbon-400 hover:text-tech-blue hover:bg-carbon-900 rounded border border-carbon-800 transition-colors"
             >
               <Linkedin className="w-4 h-4" />
             </a>
 
             <button
               onClick={onOpenResume}
-              className="flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-dark-950 font-mono tracking-wide shadow-md shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded bg-carbon-100 text-carbon-950 hover:bg-white transition-colors ml-1 font-mono"
             >
               <FileDown className="w-3.5 h-3.5" />
               <span>Resume</span>
             </button>
           </div>
 
-          {/* Mobile Menu Trigger */}
-          <div className="flex md:hidden items-center gap-2">
+          {/* Mobile Drawer Trigger */}
+          <div className="flex sm:hidden items-center gap-2">
             <button
               onClick={onOpenResume}
-              className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-cyan-500 text-dark-950 font-mono"
+              className="px-2.5 py-1 text-xs font-semibold rounded bg-carbon-100 text-carbon-950 font-mono"
             >
               Resume
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-300 hover:text-white rounded-lg bg-slate-900 border border-slate-800"
+              className="p-1.5 text-carbon-300 hover:text-white rounded bg-carbon-900 border border-carbon-800"
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
 
@@ -160,43 +154,43 @@ const Navbar = ({ onOpenResume }) => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-dark-950/95 border-b border-slate-800 px-6 py-6 backdrop-blur-xl animate-in slide-in-from-top-4 duration-200">
-          <div className="flex flex-col space-y-3">
+        <div className="sm:hidden bg-carbon-950 border-b border-carbon-800 px-6 py-4">
+          <div className="flex flex-col space-y-2">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-sm font-medium text-slate-300 hover:text-cyan-400 py-2 border-b border-slate-900 flex items-center justify-between"
+                className="text-xs font-medium text-carbon-300 hover:text-white py-1.5 border-b border-carbon-900 flex items-center justify-between"
               >
                 <span>{link.name}</span>
-                <span className="text-slate-600 text-xs font-mono">→</span>
+                <span className="text-carbon-600 font-mono text-[10px]">&rarr;</span>
               </a>
             ))}
-            <div className="flex items-center gap-4 pt-4">
+            <div className="flex items-center gap-4 pt-3">
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs text-slate-400 hover:text-white"
+                className="flex items-center gap-1.5 text-xs text-carbon-400 hover:text-white"
               >
-                <Github className="w-4 h-4" />
+                <Github className="w-3.5 h-3.5" />
                 <span>GitHub</span>
               </a>
               <a
                 href={personalInfo.linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs text-slate-400 hover:text-cyan-400"
+                className="flex items-center gap-1.5 text-xs text-carbon-400 hover:text-tech-blue"
               >
-                <Linkedin className="w-4 h-4" />
+                <Linkedin className="w-3.5 h-3.5" />
                 <span>LinkedIn</span>
               </a>
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="flex items-center gap-2 text-xs text-slate-400 hover:text-cyan-400"
+                className="flex items-center gap-1.5 text-xs text-carbon-400 hover:text-white"
               >
-                <Mail className="w-4 h-4" />
+                <Mail className="w-3.5 h-3.5" />
                 <span>Email</span>
               </a>
             </div>
